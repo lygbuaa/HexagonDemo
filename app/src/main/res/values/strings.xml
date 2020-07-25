@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HexagonDemo</string>
+    <string name="action_settings">Settings</string>
+    <string name="edit_message">Enter a number</string>
+    <string name="button_send">Calculate</string>
+    <string name="result_view">Result</string>
+</resources>
