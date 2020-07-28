@@ -3,6 +3,7 @@ package com.hexagondemo.calculator;
 import android.content.Intent;
 //import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,45 +12,54 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.File;
 
 public class MainCalculator extends AppCompatActivity {
-
+    String TAG = "hexagon";
     public static final String RESULT_MESSAGE = "com.hexagondemo.calculator.MESSAGE";
     // Used to load the 'calculator' library on application startup.
     static {
         System.loadLibrary("calculator");
     }
+    private int[] mVec;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_calculator);
+        Log.i(TAG, "MainCalculator launch");
         try {
             //Set the path of libcalculator_skel.so
             //Push the skel shared object to the location /data/app
-            String skel_location = "/data/app";
-            System.out.println("Skel library location : " + skel_location);
+            String skel_location = "/data/app/hexagon";
+//            System.out.println("Skel library location : " + skel_location);
+            Log.i(TAG, "Skel library location : " + skel_location);
             //Set the ADSP_LIBRARY_PATH to skel_location
             init(skel_location);
+            Log.i(TAG, "skel init done");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
+            Log.e(TAG, "MainCalculator exception " + e.toString());
         }
     }
     /** Called when the user taps the Send button */
     public void sendMessage(View view) {
-        Intent intent = new Intent(this, DisplayResult.class);
-        EditText editText = findViewById(R.id.editText);
+//        Intent intent = new Intent(this, DisplayResult.class);
+        EditText inputText = findViewById(R.id.inputText);
+        EditText resultText = findViewById(R.id.resultText);
         String message;
         try {
             //Create an array of length len defined by user
-            int len = Integer.valueOf(editText.getText().toString());
-            int[] vec = new int[len];
+            int len = Integer.valueOf(inputText.getText().toString());
+            mVec = new int[len];
             for (int i = 0; i < len; i++) {
-                vec[i] = i;
+                mVec[i] = i;
             }
-            message = "Result: The sum of " + String.valueOf(len) + " numbers is " + String.valueOf(sum(vec, len));
+            message = "Result: The sum of " + String.valueOf(len) + " numbers is " + String.valueOf(sum(mVec, len));
+            resultText.setText(message);
         } catch (Exception e) {
             message = "Please retry with a valid number !";
         }
-        intent.putExtra(RESULT_MESSAGE, message);
-        startActivity(intent);
+//        intent.putExtra(RESULT_MESSAGE, message);
+//        startActivity(intent);
     }
     /**
      * The native methods that are implemented by the 'calculator' native library,

@@ -18,8 +18,8 @@ android {
         }
         ndk {
             moduleName "mainfunc"
-            abiFilter "armeabi-v7a"
-//            abiFilters 'arm64-v8a'
+//            abiFilter "armeabi-v7a"
+            abiFilters "arm64-v8a"
             ldLibs "log"
         }
     }

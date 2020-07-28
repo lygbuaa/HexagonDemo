@@ -20,6 +20,7 @@ Java_com_hexagondemo_calculator_MainCalculator_init(JNIEnv *env, jobject instanc
                                                          jstring skel_location_) {
     const char *skel_location = env->GetStringUTFChars(skel_location_, 0);
     setenv("ADSP_LIBRARY_PATH", skel_location, 1);
+    __android_log_print(ANDROID_LOG_INFO, "hexagon", "set env ADSP_LIBRARY_PATH: %s", skel_location);
     env->ReleaseStringUTFChars(skel_location_, skel_location);
     return 0;
 }
@@ -38,12 +39,11 @@ Java_com_hexagondemo_calculator_MainCalculator_sum(JNIEnv *env, jobject instance
     char calculator_URI_Domain[128];
 
     rpcmem_init();
-    __android_log_print(ANDROID_LOG_DEBUG, "CALCULATOR", "ENTERING");
+    __android_log_print(ANDROID_LOG_INFO, "hexagon", "MainCalculator_sum enter");
 
     if (0 == (test = (int*)rpcmem_alloc(RPCMEM_HEAP_ID_SYSTEM, RPCMEM_DEFAULT_FLAGS, alloc_len))) {
         object->nErr = 1;
-        __android_log_print(ANDROID_LOG_DEBUG, "CALCULATOR", "rpcmem_alloc failed with nErr = %d",
-                            object->nErr);
+        __android_log_print(ANDROID_LOG_INFO, "hexagon", "rpcmem_alloc failed with nErr = %d", object->nErr);
         goto bail;
     }
     for (int i=0; i<len; i++){
@@ -56,25 +56,27 @@ Java_com_hexagondemo_calculator_MainCalculator_sum(JNIEnv *env, jobject instance
     object->nErr = calculator_open(calculator_URI_Domain, &handle);
 
     // if CDSP is not present, try ADSP.
+//    if (object->nErr != 0)
+//    {
+//        printf("cDSP not detected on this target (error code %d), attempting to use aDSP\n", object->nErr);
+//        strlcat(calculator_URI_Domain, "&_dom=adsp", strlen(calculator_URI_Domain)+strlen("&_dom=adsp") + 1);
+//        object->nErr = calculator_open(calculator_URI_Domain, &handle);
+//    }
     if (object->nErr != 0)
     {
-        printf("cDSP not detected on this target (error code %d), attempting to use aDSP\n", object->nErr);
-        strlcat(calculator_URI_Domain, "&_dom=adsp", strlen(calculator_URI_Domain)+strlen("&_dom=adsp") + 1);
-        object->nErr = calculator_open(calculator_URI_Domain, &handle);
-    }
-    if (object->nErr != 0)
-    {
-        printf("Failed to open domain");
+//        printf("Failed to open cdsp");
+        __android_log_print(ANDROID_LOG_ERROR, "hexagon", "Failed to open cdsp: %d", object->nErr);
         goto bail;
     }
 
     object->nErr = calculator_sum(handle, test, len, &object->result);
     if (object->nErr) {
-        printf("ERROR: Failed to compute calculator_sum\n");
+//        printf("ERROR: Failed to compute calculator_sum\n");
+        __android_log_print(ANDROID_LOG_ERROR, "hexagon", "Failed to compute calculator_sum");
     }
-    __android_log_print(ANDROID_LOG_DEBUG, "CALCULATOR", "EXITING with %d", object->nErr);
+    __android_log_print(ANDROID_LOG_INFO, "hexagon", "MainCalculator_sum exit: %d", object->nErr);
 
-    bail:
+bail:
     if (test) { rpcmem_free(test); }
     if (object) { delete object; }
     if (handle) { calculator_close(handle); }
