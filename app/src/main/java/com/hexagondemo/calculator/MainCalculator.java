@@ -34,6 +34,8 @@ public class MainCalculator extends AppCompatActivity {
             Log.i(TAG, "Skel library location : " + skel_location);
             //Set the ADSP_LIBRARY_PATH to skel_location
             init(skel_location);
+            EditText resultText = findViewById(R.id.resultText);
+            resultText.setText("push *skel.so to " + skel_location);
             Log.i(TAG, "skel init done");
         } catch (Exception e) {
 //            System.out.println(e.getMessage());
