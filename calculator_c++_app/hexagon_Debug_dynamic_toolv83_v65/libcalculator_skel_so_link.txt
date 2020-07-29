@@ -13,11 +13,11 @@
 -Wl,--wrap=memalign
 -Wl,--wrap=__stack_chk_fail
 -lc
--Wl,-Map=hexagon_Release_dynamic_toolv83_v65/libcalculator_skel.so.map
+-Wl,-Map=hexagon_Debug_dynamic_toolv83_v65/libcalculator_skel.so.map
 -Wl,-soname=libcalculator_skel.so
 -o
-hexagon_Release_dynamic_toolv83_v65/libcalculator_skel.so
+hexagon_Debug_dynamic_toolv83_v65/libcalculator_skel.so
 -Wl,--start-group
-hexagon_Release_dynamic_toolv83_v65/calculator_skel.o
-hexagon_Release_dynamic_toolv83_v65/calculator_imp.o
+hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o
+hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o
 -Wl,--end-group

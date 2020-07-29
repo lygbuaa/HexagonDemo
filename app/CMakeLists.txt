@@ -10,7 +10,7 @@ cmake_minimum_required(VERSION 3.4.1)
 include(${CMAKE_CURRENT_SOURCE_DIR}/hexagon_helper.cmake)
 
 # Build calculator.idl to produce calculator.h, calculator_stub.c and calculator_skel.c
-buildIDL(inc/calculator.idl calculator)
+buildIDL(../calculator_c++_app/app/inc/calculator.idl calculator)
 
 # Prepare the library rpcmem.a to and adsprpc.so produce corresponding
 # hexagon_targets, hexagon_incs and hexagon_libs.

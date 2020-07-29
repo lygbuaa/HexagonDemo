@@ -8,6 +8,7 @@
 #include <assert.h>
 #include "HAP_farf.h"
 #include "calculator.h"
+#include "AEEStdErr.h"
 
 int calculator_open(const char*uri, remote_handle64* handle) {
    void *tptr = NULL;
@@ -32,7 +33,7 @@ int calculator_close(remote_handle64 handle) {
    return 0;
 }
 
-int calculator_sum(remote_handle64 h, const int* vec, int vecLen, int64* res)
+AEEResult calculator_sum(remote_handle64 h, const int* vec, int vecLen, int64* res)
 {
   int ii = 0;
   *res = 0;
@@ -40,8 +41,24 @@ int calculator_sum(remote_handle64 h, const int* vec, int vecLen, int64* res)
     *res = *res + vec[ii];
   }
   FARF(RUNTIME_HIGH, "===============     DSP: sum result %lld ===============", *res);
-  return 0;
+  return AEE_SUCCESS;
 }
+
+AEEResult calculator_remap(remote_handle64 h,
+                     const unsigned int* pRemapTable0, int pRemapTable0Len,
+                     const unsigned int* pRemapTable1, int pRemapTable1Len,
+                     const unsigned int* pRemapTable2, int pRemapTable2Len,
+                     const unsigned int* pRemapTable3, int pRemapTable3Len,
+                     const unsigned char* inputBuffer, int inputBufferLen,
+                     unsigned char* outBuffer, int outBufferLen
+                     )
+{
+    for(unsigned int i=0; i<inputBufferLen; ++i){
+        outBuffer[i] = (inputBuffer[pRemapTable0[i]] + inputBuffer[pRemapTable1[i]] + inputBuffer[pRemapTable2[i]] + inputBuffer[pRemapTable3[i]]) >> 2;
+    }
+    return AEE_SUCCESS;
+}
+
 /*
 int calculator_diff(const int* vec, int vecLen, int64* res)
 {

@@ -10,8 +10,8 @@ cmake_minimum_required(VERSION 3.4.1)
 # Set HEXAGON_SDK_ROOT and Build variant
 # set(HEXAGON_SDK_ROOT "C:/Qualcomm/Hexagon_SDK/3.4.1")
 set(HEXAGON_SDK_ROOT "/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2")
-#set(V "android_Debug")
-set(V "android_Release_aarch64")
+set(V "android_Debug_aarch64")
+#set(V "android_Release_aarch64")
 
 set(incs
     ${HEXAGON_SDK_ROOT}/incs/

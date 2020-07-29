@@ -1,0 +1,159 @@
+# Linker from QuIC LLVM Hexagon Clang version Version 8.3.07
+# Linker based on LLVM version: 7.0
+# Notable linker command/script options:
+# CPU Architecture Version: hexagonv65
+# Target triple environment for the link: unknown
+# Maximum GP size: 0
+# Link type: Dynamic and Bsymbolic set
+# ABI Page Size: 0x1000
+# CommandLine : /home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/hexagon-link -z relro --hash-style=sysv -march=hexagon -mcpu=hexagonv65 -shared -call_shared -G0 -o hexagon_Debug_dynamic_toolv83_v65/libcalculator_skel.so /home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/initS.o -L/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic -L/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0 -L/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65 -L/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib --no-threads -Bsymbolic --wrap=malloc --wrap=calloc --wrap=free --wrap=realloc --wrap=memalign --wrap=__stack_chk_fail -lc -Map=hexagon_Debug_dynamic_toolv83_v65/libcalculator_skel.so.map -soname=libcalculator_skel.so --start-group hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o --end-group --start-group -lgcc --end-group /home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/finiS.o 
+
+Linker Script and memory map
+LOAD /home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/initS.o[v65]
+LOAD /home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/libc.so[v65]
+START GROUP
+LOAD hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o[v65]
+LOAD hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o[v65]
+END GROUP
+START GROUP
+LOAD /home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/libgcc.so[v65]
+END GROUP
+LOAD /home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/finiS.o[v65]
+
+.dynsym	0xb4	0x170 # Offset: 0xb4, LMA: 0xb4, Alignment: 0x4
+
+.dynstr	0x224	0x168 # Offset: 0x224, LMA: 0x224, Alignment: 0x1
+
+.hash	0x38c	0xc0 # Offset: 0x38c, LMA: 0x38c, Alignment: 0x4
+
+.rela.dyn	0x44c	0x1a4 # Offset: 0x44c, LMA: 0x44c, Alignment: 0x4
+
+.rela.plt	0x5f0	0x6c # Offset: 0x5f0, LMA: 0x5f0, Alignment: 0x4
+
+.init	0x660	0x6c # Offset: 0x660, LMA: 0x660, Alignment: 0x20
+.init	0x660	0x6c	/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/initS.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,32
+	0x660		_init
+
+.plt	0x6d0	0xc0 # Offset: 0x6d0, LMA: 0x6d0, Alignment: 0x10
+
+.text	0x7a0	0xf5c # Offset: 0x7a0, LMA: 0x7a0, Alignment: 0x20
+.text.__cxa_finalize_stub	0x7a0	0x30	/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/initS.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,32
+	0x7a0		__cxa_finalize_stub
+	0x7c8		__dso_handle
+.text	0x7d0	0xb8c	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,16
+	0x7d0		calculator_skel_handle_invoke
+	0x8f0		_skel_method_3
+	0xb50		_skel_method_2
+	0xcac		_skel_method_1
+	0xef8		_skel_method
+PADDING_ALIGNMENT	0x135c	0x4	0x0
+.text	0x1360	0x39c	hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,16
+	0x1360		calculator_open
+	0x13d8		calculator_close
+	0x1410		calculator_sum
+	0x156c		_HAP_debug_v2
+	0x15e0		calculator_remap
+
+.fini	0x1700	0x44 # Offset: 0x1700, LMA: 0x1700, Alignment: 0x20
+.fini	0x1700	0x44	/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/finiS.o	#SHT_PROGBITS,SHF_ALLOC|SHF_EXECINSTR,32
+	0x1700		_fini
+
+.rodata	0x1748	0x146 # Offset: 0x1748, LMA: 0x1748, Alignment: 0x8
+.rodata.methodStringsArrays	0x1748	0x8	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,SHF_ALLOC,8
+	0x1748		methodStringsArrays
+.rodata.methodStrings	0x1750	0x1e	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,SHF_ALLOC,8
+	0x1750		methodStrings
+PADDING_ALIGNMENT	0x176e	0x2	0x0
+.rodata.strings	0x1770	0x6e	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,SHF_ALLOC,8
+	0x1770		strings
+PADDING_ALIGNMENT	0x17de	0x2	0x0
+.rodata.types	0x17e0	0x30	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,SHF_ALLOC,8
+	0x17e0		types
+.rodata.str1.1	0x1810	0x24	hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x1810		.L.str
+.rodata.str1.1	0x1834	0x10	hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x1834		.L__func__.calculator_open
+.rodata.str1.1	0x1844	0x11	hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x1844		.L.str.1
+.rodata.str1.1	0x1855	0x39	hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o	#SHT_PROGBITS,SHF_ALLOC|SHF_MERGE|SHF_STRINGS,1
+	0x1855		.L.str.2
+
+.eh_frame	0x18a0	0x4 # Offset: 0x18a0, LMA: 0x18a0, Alignment: 0x20
+.eh_frame	0x18a0	0x4	/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/finiS.o	#SHT_PROGBITS,SHF_ALLOC,1
+	0x18a0		__EH_FRAME_END__
+
+.data.rel.ro	0x2000	0x150 # Offset: 0x2000, LMA: 0x2000, Alignment: 0x8
+.data.rel.ro.methodArrays	0x2000	0x10	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,8
+	0x2000		methodArrays
+.data.rel.ro.calculator_slim	0x2010	0x1c	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x2010		calculator_slim
+PADDING_ALIGNMENT	0x202c	0x4	0x0
+.data.rel.ro.methods	0x2030	0x70	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,8
+	0x2030		methods
+.data.rel.ro.parameterArrays	0x20a0	0x2c	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,8
+	0x20a0		parameterArrays
+PADDING_ALIGNMENT	0x20cc	0x4	0x0
+.data.rel.ro.parameters	0x20d0	0x80	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,8
+	0x20d0		parameters
+
+.ctors	0x2150	0x8 # Offset: 0x2150, LMA: 0x2150, Alignment: 0x4
+.ctors	0x2150	0x4	/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/initS.o	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x2150		__CTOR_LIST__
+.ctors	0x2154	0x4	/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/finiS.o	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,1
+	0x2154		__CTOR_END__
+
+.dtors	0x2158	0xc # Offset: 0x2158, LMA: 0x2158, Alignment: 0x4
+.dtors	0x2158	0x8	/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/initS.o	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,4
+	0x2158		__DTOR_LIST__
+.dtors	0x2160	0x4	/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2/tools/HEXAGON_Tools/8.3.07/Tools/bin/../target/hexagon/lib/v65/G0/pic/finiS.o	#SHT_PROGBITS,SHF_ALLOC|SHF_WRITE,1
+	0x2160		__DTOR_END__
+
+.dynamic	0x2164	0xb0 # Offset: 0x2164, LMA: 0x2164, Alignment: 0x4
+
+.got	0x2214	0x1c # Offset: 0x2214, LMA: 0x2214, Alignment: 0x4
+
+.got.plt	0x3230	0x34 # Offset: 0x3230, LMA: 0x3230, Alignment: 0x8
+
+.debug_info	0x3264	0x1267 # Offset: 0x3264, Alignment: 0x1
+.debug_info	0x3264	0xf6a	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,,1
+.debug_info	0x41ce	0x2fd	hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o	#SHT_PROGBITS,,1
+
+.debug_str	0x44cb	0x7c9 # Offset: 0x44cb, Alignment: 0x1
+.debug_str	0x44cb	0x3d	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+
+.debug_abbrev	0x4c94	0x208 # Offset: 0x4c94, Alignment: 0x1
+.debug_abbrev	0x4c94	0x148	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,,1
+.debug_abbrev	0x4ddc	0xc0	hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o	#SHT_PROGBITS,,1
+
+.debug_aranges	0x4e9c	0x88 # Offset: 0x4e9c, Alignment: 0x1
+.debug_aranges	0x4e9c	0x68	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,,1
+.debug_aranges	0x4f04	0x20	hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o	#SHT_PROGBITS,,1
+
+.debug_macinfo	0x4f24	0x2 # Offset: 0x4f24, Alignment: 0x1
+.debug_macinfo	0x4f24	0x1	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,,1
+.debug_macinfo	0x4f25	0x1	hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o	#SHT_PROGBITS,,1
+
+.debug_pubnames	0x4f26	0x187 # Offset: 0x4f26, Alignment: 0x1
+.debug_pubnames	0x4f26	0x112	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,,1
+.debug_pubnames	0x5038	0x75	hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o	#SHT_PROGBITS,,1
+
+.debug_pubtypes	0x50ad	0x2ee # Offset: 0x50ad, Alignment: 0x1
+.debug_pubtypes	0x50ad	0x211	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,,1
+.debug_pubtypes	0x52be	0xdd	hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o	#SHT_PROGBITS,,1
+
+.comment	0x539b	0x69 # Offset: 0x539b, Alignment: 0x1
+.comment	0x53d9	0x2b	Linker Version	#SHT_PROGBITS,SHF_MERGE|SHF_STRINGS,1
+
+.debug_frame	0x5404	0x120 # Offset: 0x5404, Alignment: 0x4
+.debug_frame	0x5404	0x8c	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,,4
+.debug_frame	0x5490	0x94	hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o	#SHT_PROGBITS,,4
+
+.debug_line	0x5524	0x8f6 # Offset: 0x5524, Alignment: 0x1
+.debug_line	0x5524	0x61d	hexagon_Debug_dynamic_toolv83_v65/calculator_skel.o	#SHT_PROGBITS,,1
+.debug_line	0x5b41	0x2d9	hexagon_Debug_dynamic_toolv83_v65/calculator_imp.o	#SHT_PROGBITS,,1
+
+.shstrtab	0x5e1a	0x125 # Offset: 0x5e1a, Alignment: 0x1
+
+.symtab	0x5f40	0x460 # Offset: 0x5f40, Alignment: 0x4
+
+.strtab	0x63a0	0x376 # Offset: 0x63a0, Alignment: 0x1

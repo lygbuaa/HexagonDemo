@@ -12,5 +12,13 @@
 #include "remote.idl"
 
 interface calculator : remote_handle64{
-   long sum(in sequence<long> vec, rout long long res);
+    AEEResult sum(in sequence<long> vec, rout long long res);
+    AEEResult remap(
+        in sequence<unsigned long> pRemapTable0,
+        in sequence<unsigned long> pRemapTable1,
+        in sequence<unsigned long> pRemapTable2,
+        in sequence<unsigned long> pRemapTable3,
+        in sequence<uint8> inputBuffer,
+        rout sequence<uint8> outBuffer
+    );
 };

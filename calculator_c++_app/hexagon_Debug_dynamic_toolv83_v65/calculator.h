@@ -61,7 +61,8 @@ __QAIC_HEADER_EXPORT int __QAIC_HEADER(calculator_open)(const char* uri, remote_
     * @retval, 0 on success, should always succeed
     */
 __QAIC_HEADER_EXPORT int __QAIC_HEADER(calculator_close)(remote_handle64 h) __QAIC_HEADER_ATTRIBUTE;
-__QAIC_HEADER_EXPORT int __QAIC_HEADER(calculator_sum)(remote_handle64 _h, const int* vec, int vecLen, int64* res) __QAIC_HEADER_ATTRIBUTE;
+__QAIC_HEADER_EXPORT AEEResult __QAIC_HEADER(calculator_sum)(remote_handle64 _h, const int* vec, int vecLen, int64* res) __QAIC_HEADER_ATTRIBUTE;
+__QAIC_HEADER_EXPORT AEEResult __QAIC_HEADER(calculator_remap)(remote_handle64 _h, const unsigned int* pRemapTable0, int pRemapTable0Len, const unsigned int* pRemapTable1, int pRemapTable1Len, const unsigned int* pRemapTable2, int pRemapTable2Len, const unsigned int* pRemapTable3, int pRemapTable3Len, const uint8* inputBuffer, int inputBufferLen, uint8* outBuffer, int outBufferLen) __QAIC_HEADER_ATTRIBUTE;
 #ifndef calculator_URI
 #define calculator_URI "file:///libcalculator_skel.so?calculator_skel_handle_invoke&_modver=1.0"
 #endif /*calculator_URI*/
