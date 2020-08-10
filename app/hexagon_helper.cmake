@@ -87,6 +87,12 @@ function(prepare_hexagon_helper_libraries hexagonTarget hexagonIncs hexagonLibs)
 			continue()
 		endif()
 
+		if(libNameUnstripped MATCHES "adsprpc")
+			set(allHexLibs ${allHexLibs} -L${remote_src}/ship/${V} libadsprpc.so)
+			set(HEXAGON_ALL_INCS ${HEXAGON_ALL_INCS} ${remote_inc})
+			continue()
+		endif()
+
 		if(${libNameUnstripped} MATCHES "\.a$") #ends with .a
 			STRING(REGEX REPLACE "(.*)\.a" "\\1"
 				libName

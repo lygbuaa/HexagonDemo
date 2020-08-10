@@ -158,7 +158,7 @@ Java_com_hexagondemo_calculator_MainCalculator_remap(JNIEnv *env, jobject instan
     if (object->nErr != 0)
     {
 //        printf("Failed to open cdsp");
-        __android_log_print(ANDROID_LOG_ERROR, "hexagon", "Failed to open cdsp: %d", object->nErr);
+        __android_log_print(ANDROID_LOG_ERROR, "hexagon", "Failed to open domain %s: %d", calculator_URI_Domain, object->nErr);
         object->result = -7;
         goto bail;
     }

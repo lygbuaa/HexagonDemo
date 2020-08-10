@@ -29,7 +29,7 @@ public class MainCalculator extends AppCompatActivity {
         try {
             //Set the path of libcalculator_skel.so
             //Push the skel shared object to the location /data/app
-            String skel_location = "/data/app/hexagon";
+            String skel_location = "/vendor/lib/rfsa/adsp"; // /data/app/hexagon  /vendor/lib/rfsa/adsp
 //            System.out.println("Skel library location : " + skel_location);
             Log.i(TAG, "Skel library location : " + skel_location);
             //Set the ADSP_LIBRARY_PATH to skel_location

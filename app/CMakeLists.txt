@@ -14,7 +14,7 @@ buildIDL(../calculator_c++_app/app/inc/calculator.idl calculator)
 
 # Prepare the library rpcmem.a to and adsprpc.so produce corresponding
 # hexagon_targets, hexagon_incs and hexagon_libs.
-prepare_hexagon_helper_libraries(hexagonTargets_1 hexagonIncs_1 hexagonLibs_1 rpcmem.a cdsprpc)
+prepare_hexagon_helper_libraries(hexagonTargets_1 hexagonIncs_1 hexagonLibs_1 rpcmem.a adsprpc cdsprpc)
 
 set(incs ${CMAKE_CURRENT_BINARY_DIR}/)
 
