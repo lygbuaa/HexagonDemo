@@ -56,7 +56,8 @@ public class MainCalculator extends AppCompatActivity {
                 mVec[i] = i;
             }
 //            message = "sum of " + String.valueOf(len) + " numbers is " + String.valueOf(sum(mVec, len));
-            message = "remap: " + String.valueOf(remap());
+//            message = "remap: " + String.valueOf(remap());
+            message = "halide: " + String.valueOf(testHalide());
             resultText.setText(message);
         } catch (Exception e) {
             message = "Please retry with a valid number !";
@@ -74,4 +75,5 @@ public class MainCalculator extends AppCompatActivity {
     public native int init(String skel_location);
     public native long sum(int[] vec, int len);
     public native long remap();
+    public native long testHalide();
 }

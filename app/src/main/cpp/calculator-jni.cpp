@@ -5,6 +5,7 @@
 #include <rpcmem.h>
 #include "remote.h"
 #include <calculator.h>
+#include "HalideWrapper.h"
 
 using namespace std;
 class calculator {
@@ -200,4 +201,12 @@ Java_com_hexagondemo_calculator_MainCalculator_remap(JNIEnv *env, jobject instan
     if (handle) { calculator_close(handle); }
     rpcmem_deinit();
     return object->result;
+}
+
+extern "C"
+JNIEXPORT jlong JNICALL
+Java_com_hexagondemo_calculator_MainCalculator_testHalide(JNIEnv *env, jobject instance) {
+    using namespace HugoLiuHexagon;
+    HalideWrapper* pHalide = new HalideWrapper("/vendor/lib/rfsa/adsp");
+    return pHalide -> test();
 }

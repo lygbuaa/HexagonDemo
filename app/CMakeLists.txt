@@ -5,6 +5,8 @@
 
 cmake_minimum_required(VERSION 3.4.1)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DANDROID -std=c++11 -flax-vector-conversions -O2 -ftree-vectorize  -fexceptions -D__aarch64__ ")
+
 # Use the file `hexagon_helper.cmake` as helper to CMakeLists.txt.
 # It contains the definition of functions `buildIDL` and `prepare_hexagon_helper_libraries`.
 include(${CMAKE_CURRENT_SOURCE_DIR}/hexagon_helper.cmake)
@@ -17,6 +19,13 @@ buildIDL(../calculator_c++_app/app/inc/calculator.idl calculator)
 prepare_hexagon_helper_libraries(hexagonTargets_1 hexagonIncs_1 hexagonLibs_1 rpcmem.a adsprpc cdsprpc)
 
 set(incs ${CMAKE_CURRENT_BINARY_DIR}/)
+
+set(HEXAGON_SDK_ROOT "/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2")
+set(HALIDE_ROOT  ${HEXAGON_SDK_ROOT}/tools/HALIDE_Tools/2.2.03/Halide)
+set(HALIDE_SRC_PATH  ${CMAKE_CURRENT_SOURCE_DIR}/../halide/blur)
+include_directories(${HALIDE_ROOT}/include)
+include_directories(${HALIDE_ROOT}/support)
+include_directories(${HALIDE_SRC_PATH}/bin/arm-64-android)
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
@@ -47,3 +56,5 @@ find_library(log-lib log)
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries(calculator ${log-lib})
+
+target_link_libraries(calculator ${HALIDE_SRC_PATH}/bin/arm-64-android/halide_blur.a)
