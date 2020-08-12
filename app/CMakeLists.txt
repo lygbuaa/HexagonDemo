@@ -22,7 +22,7 @@ set(incs ${CMAKE_CURRENT_BINARY_DIR}/)
 
 set(HEXAGON_SDK_ROOT "/home/hugoliu/Qualcomm/Hexagon_SDK/3.5.2")
 set(HALIDE_ROOT  ${HEXAGON_SDK_ROOT}/tools/HALIDE_Tools/2.2.03/Halide)
-set(HALIDE_SRC_PATH  ${CMAKE_CURRENT_SOURCE_DIR}/../halide/blur)
+set(HALIDE_SRC_PATH  ${CMAKE_CURRENT_SOURCE_DIR}/../halide/remap)
 include_directories(${HALIDE_ROOT}/include)
 include_directories(${HALIDE_ROOT}/support)
 include_directories(${HALIDE_SRC_PATH}/bin/arm-64-android)
@@ -57,4 +57,4 @@ find_library(log-lib log)
 
 target_link_libraries(calculator ${log-lib})
 
-target_link_libraries(calculator ${HALIDE_SRC_PATH}/bin/arm-64-android/halide_blur.a)
+target_link_libraries(calculator ${HALIDE_SRC_PATH}/bin/arm-64-android/halide_remap.a)

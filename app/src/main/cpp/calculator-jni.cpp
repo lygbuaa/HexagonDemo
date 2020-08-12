@@ -208,5 +208,5 @@ JNIEXPORT jlong JNICALL
 Java_com_hexagondemo_calculator_MainCalculator_testHalide(JNIEnv *env, jobject instance) {
     using namespace HugoLiuHexagon;
     HalideWrapper* pHalide = new HalideWrapper("/vendor/lib/rfsa/adsp");
-    return pHalide -> test();
+    return pHalide -> test_remap();
 }
